@@ -3,21 +3,10 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class Stage extends Activite{
-    private String nom;
-
-    private List<Horaire> horaire = new LinkedList<>();
-
-    private Set<Personne> membres = new HashSet<>();
 
 
+    public Stage(String Nom, String type,Horaire h) {
+        super(Nom, type, h);
 
-    public String getNom(){
-        return nom;
     }
-
-    public void ajouterHoraire(LocalDate jour, LocalTime debut, LocalTime fin){
-        horaire.add(new Horaire(debut,fin,jour));
-    }
-
-
 }

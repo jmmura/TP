@@ -17,3 +17,4 @@ public class Horaire {
         return "le "+jour+" de "+debut+" à "+fin;
     }
 }
+
