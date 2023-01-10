@@ -11,3 +11,8 @@ cela est fait en parcourant la map d'Activite et pour chaque activité, supprime
 4) ne rien faire/sortir du programme
 
 La classe Calendrier (actuellement en cours d'élaboration) permettra de stocker/afficher un  planning sur une semaine à l'aide d'un tableau de String de 7 colonnes et autant de lignes que d'heures d'activité.
+
+
+ATTENTION:
+Tout cela fonctionne actuellement sous l'hypothèse extrême que l'utilisateur agit de manière logique et censée.
+La programmation défensive arrivera plus tard
