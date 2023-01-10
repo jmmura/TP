@@ -28,17 +28,6 @@ public class Activite {
         hor.add(h);
         this.horaires.add(h);
         listeActivites.put(Nom,this);
-        switch(Type){
-            case "repas":
-                Repas.repas.put(Nom,this);
-                break;
-            case "stage":
-                Stage.stages.put(Nom,this);
-                break;
-            case "logement":
-                Logement.logements.put(Nom,this);
-                break;
-        }
     }
 
     public static void setHoraire(String activite, Horaire h){
