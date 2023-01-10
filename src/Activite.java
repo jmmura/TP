@@ -5,80 +5,98 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class Activite {
-    
+
     public static Map<String,Activite> listeActivites = new HashMap<>();
-    public static Map<String, Set<Personne>> inscrits = new HashMap<>();
-
-    public static Map<String,Set<Horaire>> programme = new HashMap<>();
-
     
-
     private String nom;
-
     private String type;
 
+    private double prix;
+
+    public static double recettes;
+
+    private int recette;
     private Set<Personne> membres = new HashSet<>();
-    private Set<Horaire> horaires = new HashSet<>();
+    private Set<Horaire> horaires = new TreeSet<>();
 
 
-    public Activite(String Nom,String Type,Horaire h){
+    public Activite(String Nom,String Type,Horaire h, double Prix){
         nom=Nom;
+        this.prix=Prix;
         type = Type;
-        Set<Horaire> hor = programme.get(Nom);
-        if(hor==null){
-            hor = new HashSet<>();
-            Set<Personne> gens = new HashSet<>();
-            inscrits.put(Nom,gens);
-        }
+        Set<Horaire> hor = new TreeSet<>();
         hor.add(h);
-        programme.put(Nom,hor);
+        this.horaires.add(h);
         listeActivites.put(Nom,this);
+        switch(Type){
+            case "repas":
+                Repas.repas.put(Nom,this);
+                break;
+            case "stage":
+                Stage.stages.put(Nom,this);
+                break;
+            case "logement":
+                Logement.logements.put(Nom,this);
+                break;
+        }
+    }
+
+    public static void setHoraire(String activite, Horaire h){
+                listeActivites.get(activite).getHoraires().add(h);
+    }
+
+
+
+
+    public static void setMembres(String nomActivite, Personne p){
+         listeActivites.get(nomActivite).setMembres(p);
+    }
+
+
+    public void setMembres(Personne p){
+        if(membres == null){membres = new HashSet<>();}
+        membres.add(p);
     }
 
     public String getNom(){
         return nom;
     }
 
-    public static void ajoutMembre(String nomActivite, Personne p){
-        Set<Personne> pers = inscrits.get(nomActivite);
-        if(pers==null){
-            pers = new HashSet<>();
-            inscrits.put(nomActivite,pers);
-        }
-        pers.add(p);
-        listeActivites.get(nomActivite).membres.add(p);
-    }
-    public void ajouterMembre(Personne p){
-        if(membres == null){membres = new HashSet<>();}
-        membres.add(p);
-        inscrits.get(this.nom).add(p);
-    }
-
-    public Set<Horaire> horaireActivite(){
+    public Set<Horaire> getHoraires(){
         return this.horaires;
     }
-    public Set<Personne> listeMembres(){
+    public Set<Personne> getMembres(){
         return this.membres;
     }
 
+    public double getPrix() {
+        return prix;
+    }
+
     public static void afficheActivites(){
-        for(String s : programme.keySet()){
-            System.out.print(s+" ");
+        for(Activite a : listeActivites.values()){
+            System.out.print(a.getNom()+" ");
         }
+        System.out.println();
     }
 
     public static void afficherProgramme(){
-        for(String key : programme.keySet()){
-            System.out.print(key+" ");
-            System.out.println(programme.get(key));
+        for(Activite a : listeActivites.values()){
+            System.out.print(a.getNom()+" ");
+            System.out.println(a.getHoraires());
         }
     }
 
+
+
     public static void afficherMembres(){
-        for(String key : inscrits.keySet()){
-            System.out.print(key+": ");
-            for(Personne p : inscrits.get(key)){System.out.print(p.getNom()+" ");}
+        for(Activite a : listeActivites.values()){
+            System.out.print(a.getNom()+" : ");
+            for(Personne p : a.getMembres()){
+                System.out.print(p.getNom()+" ");
+            }
             System.out.println();
         }
     }
+
 }
