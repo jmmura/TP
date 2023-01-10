@@ -22,7 +22,17 @@ public class starter {
                     String[] act = t.nextLine().split(",",0);
                     Horaire h = new Horaire(LocalTime.of(Integer.parseInt(act[2]),0),LocalTime.of(Integer.parseInt(act[3]),0),Semaine.valueOf(act[1]));
                     if(Activite.listeActivites.get(act[0])==null){
-                        new Activite(act[0],type,h,Double.parseDouble(act[4]));
+                        switch(type){
+                            case "stage":
+                                new Stage(act[0],type,h,Double.parseDouble(act[4]));
+                                break;
+                            case "repas":
+                                new Repas(act[0],type,h,Double.parseDouble(act[4]));
+                                break;
+                            case "logement":
+                                new Logement(act[0],type,h,Double.parseDouble(act[4]));
+                                break;
+                        }
                     }
                     else{
                         Activite.setHoraire(act[0],h);
