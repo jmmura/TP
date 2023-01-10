@@ -15,4 +15,9 @@ La classe Calendrier (actuellement en cours d'élaboration) permettra de stocker
 
 ATTENTION:
 Tout cela fonctionne actuellement sous l'hypothèse extrême que l'utilisateur agit de manière logique et censée.
-La programmation défensive arrivera plus tard
+La programmation défensive arrivera plus tard.
+
+
+Q:
+présences?
+affichage calendrier : System.out.format(...) ou Swing ou ...
